@@ -95,3 +95,21 @@ function App() {
 $("body").ready(function () {
   App();
 })
+
+
+function Foo() {}
+Foo.prototype.setName = function (name) {
+  this.name = name;
+};
+
+
+function Bar() {
+  
+};
+Bar.prototype = Object.create(Foo.prototype);
+Bar.prototype.setColor = function(color) {
+  this.color = color;
+};
+
+var x1 = new Foo();
+var x2 = new Bar();
