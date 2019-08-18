@@ -92,48 +92,51 @@ function App() {
     }
   ];
 
-  function goodFoodSelect(arrayInput, taste) {
+  // Higher order function - function that takes another function as input
+  function goodFoodSelect(arrayInput, taste, fn) {
     var goodFoodList = [];
     for (var i = 0; i < arrayInput.length; i++) {
-      if (arrayInput[i].taste.toLowerCase() === taste.toLowerCase()) {
+      if (fn(arrayInput[i], taste)) {
         goodFoodList.push(arrayInput[i]);
       }
     }
     return goodFoodList;
   }
-  console.log(goodFoodSelect(cuisineNames, "great"));
+  console.log(goodFoodSelect(cuisineNames, "great", checkTaste));
 
-  function calorieValueSelect(arrayInput, calorieOne, calorieTwo) {
+  // Higher order function - function that takes another function as input
+  function calorieValueSelect(arrayInput, calorieOne, calorieTwo, fn) {
     var calorieList = [];
     for (var i = 0; i < arrayInput.length; i++) {
-      if (arrayInput[i].calorie > calorieOne && arrayInput[i].calorie <= calorieTwo) {
+      if (fn(arrayInput[i], calorieOne, calorieTwo)) {
         calorieList.push(arrayInput[i]);
       }
     }
     return calorieList;
   }
-  console.log(calorieValueSelect(cuisineNames, 524, 1200));
+  console.log(calorieValueSelect(cuisineNames, 524, 1200, checkCalorie));
 
-  function CheckTaste(obj, tasteName) {
-//    if (obj.taste === tasteName) {
-//      return true;
-//    } else {
-//      return false;
-//    }
-     return (obj.taste.toLowerCase() === tasteName.toLowerCase());
-    
+
+  function checkTaste(obj, tasteName) {
+    //    if (obj.taste === tasteName) {
+    //      return true;
+    //    } else {
+    //      return false;
+    //    }
+    return (obj.taste.toLowerCase() === tasteName.toLowerCase());
   }
-  console.log(CheckTaste(cuisineNames[4], "good"));
+//  console.log(checkTaste(cuisineNames[4], "good"));
 
-  function CheckCalorie(obj, calorieLow, calorieHigh) {
-//    if (obj.calorie > calorieLow && obj.calorie <= calorieHigh) {
-//      return true;
-//    } else {
-//      return false;
-//    }
-    
+
+  function checkCalorie(obj, calorieLow, calorieHigh) {
+    //    if (obj.calorie > calorieLow && obj.calorie <= calorieHigh) {
+    //      return true;
+    //    } else {
+    //      return false;
+    //    }
+
     return (obj.calorie > calorieLow && obj.calorie <= calorieHigh);
   }
-  console.log(CheckCalorie(cuisineNames[3], 560, 700));
+//  console.log(checkCalorie(cuisineNames[3], 560, 700));
 
 }
