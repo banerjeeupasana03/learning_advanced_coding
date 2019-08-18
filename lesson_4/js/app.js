@@ -103,4 +103,37 @@ function App() {
   }
   console.log(goodFoodSelect(cuisineNames, "great"));
 
+  function calorieValueSelect(arrayInput, calorieOne, calorieTwo) {
+    var calorieList = [];
+    for (var i = 0; i < arrayInput.length; i++) {
+      if (arrayInput[i].calorie > calorieOne && arrayInput[i].calorie <= calorieTwo) {
+        calorieList.push(arrayInput[i]);
+      }
+    }
+    return calorieList;
+  }
+  console.log(calorieValueSelect(cuisineNames, 524, 1200));
+
+  function CheckTaste(obj, tasteName) {
+//    if (obj.taste === tasteName) {
+//      return true;
+//    } else {
+//      return false;
+//    }
+     return (obj.taste.toLowerCase() === tasteName.toLowerCase());
+    
+  }
+  console.log(CheckTaste(cuisineNames[4], "good"));
+
+  function CheckCalorie(obj, calorieLow, calorieHigh) {
+//    if (obj.calorie > calorieLow && obj.calorie <= calorieHigh) {
+//      return true;
+//    } else {
+//      return false;
+//    }
+    
+    return (obj.calorie > calorieLow && obj.calorie <= calorieHigh);
+  }
+  console.log(CheckCalorie(cuisineNames[3], 560, 700));
+
 }
